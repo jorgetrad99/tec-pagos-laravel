@@ -22,6 +22,7 @@
                     </div>   
                 </div>
             @endforeach
+            {{  $services->links() }}
         </div>
     </div>
 </div>
