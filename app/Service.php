@@ -14,6 +14,11 @@ class Service extends Model
      *
      * @return array
      */
+
+    protected $fillable = [
+        'name', 'user_id', 'amount'
+    ];
+
     public function sluggable(): array
     {
         return [

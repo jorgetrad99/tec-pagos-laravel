@@ -16,7 +16,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::latest()->get();
+        $services = Service::latest()->paginate(30);
 
         return view('services.index', compact('services'));
     }
@@ -42,7 +42,7 @@ class ServiceController extends Controller
         //salvar
         $service = Service::create([
             'user_id' => auth()->user()->id
-        ]);
+        ] + $request->all());
 
         //Retornar
         return back()->with('status', 'Creado con éxito');

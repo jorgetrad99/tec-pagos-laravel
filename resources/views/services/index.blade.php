@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     Servicios
@@ -25,7 +25,6 @@
                                 <th>Nombre</th>
                                 <th>Importe</th>
                                 <th>&nbsp;</th>
-                                <th>&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,28 +34,44 @@
                                     <td>{{ $service->name }}</td>
                                     <td>{{ $service->amount }}</td>
                                     <td>
-                                        
-                                        <a href="{{ route('services.edit', $service) }}" class="btn btn-primary btn-sm ">
-                                            Editar
-                                        </a>
-                                    
-                                        <form action="{{ route('services.destroy', $service) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input 
-                                                type="submit" 
-                                                value="Eliminar" 
-                                                class="btn btn-sm btn-danger"
-                                                onclick="return confirm('¿Desea Eliminar?')"    
-                                            >
-                                        </form>
+                                        <div class="btn-group row justify-content-center">
+                                            <input type="button" href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-primary"
+                                                value="Editar">
+                                            <form action="{{ route('services.destroy', $service) }}" method="POST"> 
+                                                @csrf
+                                                @method('DELETE')
+                                                <input 
+                                                    type="submit" 
+                                                    value="Eliminar" 
+                                                    class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('¿Desea Eliminar?')"    
+                                                >
+                                            </form>
+                                        </div>
                                     </td>
+                                    
                                 </tr>
                             @endforeach
+                            <style>
+                                .card-body{
+                                    padding-bottom: 0; 
+                                }
+                                .bt-group > a, input {
+                                    margin: 1px;
+                                }
+                                .pagination{
+                                    padding: 5px;
+                                    margin: 0;
+                                }
+                            </style>
                         </tbody>
-
+                        
                     </table>
                 </div>
+                
+            </div>
+            <div class="pagination float-right">
+                {{  $services->links() }}
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@ class PageController extends Controller
     public function services()
     {
         return view('services', [
-            'services' => Service::with('user')->latest()->paginate()
+            'services' => Service::with('user')->latest()->paginate(25)
         ]);
     }
 
