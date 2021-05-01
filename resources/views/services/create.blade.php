@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label>Importe *</label>
-                            <input type="number" name="amount" value="0.5" min="0.01" max="5000.00" step="0.5" class="form-control" required>
+                            <input type="number" name="amount" value="0.5" min="0" max="5000" step="0.5" class="form-control" required>
                         </div>
                         <div class="form-group">
                             @csrf

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     Servicios
-                    <a href="{{ route('services.create') }}" class="btn btn-primary btn-sm float-right">Crear</a>
+                    <a href="{{ route('services.create') }}" class="btn btn-success btn-sm float-right">Crear</a>
                     
                 </div>
 
@@ -24,8 +24,8 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Importe</th>
-                                <th colspan="2">&nbsp;</th>
-                                <th colspan="2">&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,11 +35,11 @@
                                     <td>{{ $service->name }}</td>
                                     <td>{{ $service->amount }}</td>
                                     <td>
+                                        
                                         <a href="{{ route('services.edit', $service) }}" class="btn btn-primary btn-sm ">
                                             Editar
                                         </a>
-                                    </td>
-                                    <td>
+                                    
                                         <form action="{{ route('services.destroy', $service) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -51,7 +51,6 @@
                                             >
                                         </form>
                                     </td>
-                                    <td></td>
                                 </tr>
                             @endforeach
                         </tbody>

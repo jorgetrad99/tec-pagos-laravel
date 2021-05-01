@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Service;
-use Illuminate\Http\Request;
+use App\Http\Requests\ServiceRequest;
+
 
 class ServiceController extends Controller
 {
@@ -36,9 +37,15 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        //
+        //salvar
+        $service = Service::create([
+            'user_id' => auth()->user()->id
+        ]);
+
+        //Retornar
+        return back()->with('status', 'Creado con éxito');
     }
 
     /**

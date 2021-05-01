@@ -18,7 +18,7 @@
                             </em>
                             {{ $service->created_at->format('d M Y') }}
                         </p> --}}
-                        <p class="text-mutted mb-0">{{ $service->amount }}</p>
+                        <p class="text-mutted mb-0">${{ $service->amount }}</p>
                     </div>   
                 </div>
             @endforeach
