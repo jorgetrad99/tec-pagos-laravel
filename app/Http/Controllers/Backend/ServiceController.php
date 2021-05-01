@@ -54,10 +54,10 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    /* public function show(Service $service)
     {
         //
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.
@@ -67,7 +67,8 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+
+        return view('services.edit', compact('service'));
     }
 
     /**
@@ -77,9 +78,11 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
-        //
+        $service->update($request->all());
+
+        return back()->with('status', 'Servicio Actualizado con Éxito');
     }
 
     /**
@@ -90,6 +93,8 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+
+        return back()->with('status', 'Servicio Eliminado con Éxito');
     }
 }

@@ -22,7 +22,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nombre</th>
+                                <th>Concept</th>
                                 <th>Importe</th>
                                 <th>&nbsp;</th>
                             </tr>
@@ -33,10 +33,11 @@
                                     <td>{{ $service->id }}</td>
                                     <td>{{ $service->name }}</td>
                                     <td>{{ $service->amount }}</td>
-                                    <td>
-                                        <div class="btn-group row justify-content-center">
-                                            <input type="button" href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-primary"
-                                                value="Editar">
+                                    <td class="column">
+                                        <div class="btn-group row justify-content-around">
+                                            <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-primary">
+                                                Editar
+                                            </a>    
                                             <form action="{{ route('services.destroy', $service) }}" method="POST"> 
                                                 @csrf
                                                 @method('DELETE')
@@ -56,8 +57,13 @@
                                 .card-body{
                                     padding-bottom: 0; 
                                 }
+                                .column{
+                                    padding-left: 5px; 
+                                }
+                                
                                 .bt-group > a, input {
-                                    margin: 1px;
+                                    margin: 5px;
+                                    border-radius: 0.2rem;
                                 }
                                 .pagination{
                                     padding: 5px;
