@@ -64,7 +64,7 @@
                                         Servicios
                                     </a>
                                 @else  
-                                    <a href="{{ route('services') }}" class="nav-link">
+                                    <a href="{{ url('/services') }}" class="nav-link">
                                         Servicios
                                     </a>
                                 @endif
@@ -116,6 +116,11 @@
                 </div>
             </div>
         </nav>
+        <style>
+            nav {
+                background-color: #2B3959;
+            }
+        </style>
 
         <main class="py-4">
             @yield('content')

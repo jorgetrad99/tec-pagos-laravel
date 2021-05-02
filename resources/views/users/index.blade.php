@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Servicios
+                    Usuarios
                     {{-- <a href="{{ route('users.create') }}" class="btn btn-success btn-sm float-right">Crear</a> --}}
                     <a class="btn btn-success btn-sm float-right">Crear</a>
                     
