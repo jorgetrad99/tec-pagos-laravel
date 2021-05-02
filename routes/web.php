@@ -16,9 +16,9 @@ Route::get('/', 'PageController@services');
 Route::get('/lista-servicios', 'PageController@services');
 Route::get('/services-list/{service}', 'PageController@services')->name('service');
 
-Route::get('/users', 'UserController@index');
-Route::post('users', 'UserController@store')->name('name.store');   //Salvar en la base de datos
-Route::delete('users/{user}', 'UserController@destroy')->name('name.destroy');   //Eliminar de la base de datos
+Route::get('/users', 'Backend\UserController@index');
+Route::post('users', 'Backend\UserController@store')->name('users.store');   //Salvar en la base de datos
+Route::delete('users/{user}', 'Backend\UserController@destroy')->name('users.destroy');   //Eliminar de la base de datos
 
 Auth::routes();
 

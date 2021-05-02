@@ -19,7 +19,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Concept</th>
+                                <th>Concepto</th>
                                 <th>Importe</th>
                                 <th>&nbsp;</th>
                             </tr>

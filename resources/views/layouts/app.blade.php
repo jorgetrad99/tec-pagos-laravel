@@ -69,6 +69,16 @@
                                     </a>
                                 @endif
                             </li>
+                            <li class="nav-item">
+                                @if(Auth::user()->user_type <= 1)
+                                {{-- <a href="{{ route('users.index') }}" class="nav-link">
+                                        Usuarios
+                                    </a> --}}
+                                    <a href="{{ url('/users') }}" class="nav-link">
+                                        Usuarios
+                                    </a>
+                                @endif
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} 
