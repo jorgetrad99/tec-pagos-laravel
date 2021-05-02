@@ -10,11 +10,11 @@
                 </div>
 
                 <div class="card-body">
-                    {{-- @if (session('status'))
+                    @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif --}}
+                    @endif
 
                     <table class="table">
                         <thead>
@@ -32,7 +32,8 @@
                                     <td>{{ $service->amount }}</td>
                                     <td class="column">
                                         <div class="btn-group justify-content-around">
-                                            <a href="{{ url('/login') }}" class="btn btn-sm btn-success">
+                                            {{-- {{ dd($service) }} --}}
+                                            <a href="{{ route('services.show', $service) }}" class="btn btn-sm btn-success">
                                                 Pagar
                                             </a>    
                                         </div>

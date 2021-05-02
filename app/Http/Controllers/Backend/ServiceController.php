@@ -40,7 +40,7 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         //salvar
-        $service = Service::create([
+        Service::create([
             'user_id' => auth()->user()->id
         ] + $request->all());
 
@@ -54,10 +54,10 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    /* public function show(Service $service)
+    public function show(Service $service)
     {
-        //
-    } */
+        return view('services.show', compact('service'));
+    }
 
     /**
      * Show the form for editing the specified resource.

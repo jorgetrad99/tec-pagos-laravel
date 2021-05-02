@@ -15,7 +15,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <form action="{{ route('services.update', $service) }}" method="POST">
                         <div class="form-group">
                             <label>Concepto *</label>

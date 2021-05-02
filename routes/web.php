@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', 'PageController@services');
 
 Route::get('/lista-servicios', 'PageController@services');
@@ -25,5 +26,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('services', 'Backend\ServiceController')
-    ->middleware('auth')
-    ->except('show');
+    ->middleware('auth');

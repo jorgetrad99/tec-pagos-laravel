@@ -25,6 +25,7 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
+                                <th>Tipo Usuario</th>
                                 <th>Num. Control</th>
                                 <th>&nbsp;</th>
                             </tr>
@@ -35,6 +36,23 @@
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>
+                                        @switch ($user->user_type)
+                                            @case(0)
+                                                Root
+                                                @break
+                                            @case(1)
+                                                Admin
+                                                @break
+                                            @case(2)
+                                                Maestro
+                                                @break
+                                            @case(3)
+                                                Alumno
+                                                @break
+                                        @endswitch
+                                        
+                                    </td>
                                     <td>{{ $user->control_number }}</td>
                                     <td class="column">
                                         <div class="btn-group row justify-content-around">
