@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="col">
                                         <label>Saldo Disponible</label>
-                                        <input type="number" name="amount" value="{{ old('amount', $service->amount) }}" min="0.01" max="5000" step="0.01" class="form-control" required disabled>
+                                        <input type="number" name="amount" min="0.01" max="5000" step="0.01" class="form-control" required disabled>
                                     </div>
                                     
                                 </div>
@@ -38,8 +38,24 @@
                             <input type="text" name="email" value="{{ Auth::user()->email }}" class="form-control" required disabled>
                         </div>
                         <div class="form-group">
-                            <label>Importe</label>
-                            <input type="number" name="amount" min="0.01" max="5000" step="0.01" class="form-control" required disabled>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col">
+                                        <label>Precio Unitario</label>
+                                        <input type="number" name="amount" value="{{ old('amount', $service->amount) }}" min="0.01" max="5000" step="0.01" class="form-control" required disabled>
+                                    </div>
+                                    <div class="col">
+                                        <label>Cantidad</label>
+                                        <input type="number" name="saldo" value="1" min="1" max="50" step="1" class="form-control" required>
+                                    </div>
+                                    <div class="col">
+                                        <label>Total</label>
+                                        <input type="number" name="saldo" min="1" max="50" step="1" class="form-control" required disabled>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
                         </div>
                         <div class="form-group">
                             @csrf
