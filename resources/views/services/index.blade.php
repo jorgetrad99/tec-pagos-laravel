@@ -64,7 +64,7 @@
                                 .bt-group > a, input {
                                     margin: 5px;
                                     border-radius: 0.2rem;
-                                }
+                                }s
                                 .pagination{
                                     padding: 5px;
                                     margin: 0;

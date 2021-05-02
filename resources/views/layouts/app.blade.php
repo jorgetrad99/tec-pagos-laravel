@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     Tec Pagos Conkal
                 </a>
                 {{-- <a class="navbar-brand" href="{{ url('/') }}">
@@ -43,6 +43,12 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest {{-- If the user is a guest then --}}
+                            <a href="{{ url('/lista-servicios') }}" class="nav-link">
+                                Servicios
+                            </a>
+                            {{-- <a class="nav-link">
+                                Servicios
+                            </a> --}}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -53,9 +59,15 @@
                             @endif
                         @else {{-- if you're an user with an account then It'll show you this --}}
                             <li class="nav-item">
-                                <a href="{{ route('services.index') }}" class="nav-link">
-                                    Servicios
-                                </a>
+                                @if(Auth::user()->user_type <= 1)
+                                    <a href="{{ route('services.index') }}" class="nav-link">
+                                        Servicios
+                                    </a>
+                                @else  
+                                    <a href="{{ route('services') }}" class="nav-link">
+                                        Servicios
+                                    </a>
+                                @endif
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

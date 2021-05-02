@@ -12,7 +12,13 @@
 */
 
 Route::get('/', 'PageController@services');
-Route::get('services-list/{service}', 'PageController@services')->name('service');
+
+Route::get('/lista-servicios', 'PageController@services');
+Route::get('/services-list/{service}', 'PageController@services')->name('service');
+
+Route::get('/users', 'UserController@index');
+Route::post('users', 'UserController@store')->name('name.store');   //Salvar en la base de datos
+Route::delete('users/{user}', 'UserController@destroy')->name('name.destroy');   //Eliminar de la base de datos
 
 Auth::routes();
 
