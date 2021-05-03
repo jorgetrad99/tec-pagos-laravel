@@ -41,7 +41,7 @@
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <div class="col">
-                                        <label>Precio Unitario</label>
+                                        <label>P. Unitario</label>
                                         <input id="precio-u" type="number" name="amount" value="{{ old('amount', $service->amount) }}" min="0.01" max="5000" step="0.01" class="form-control" required disabled>
                                     </div>
                                     <div class="col">
