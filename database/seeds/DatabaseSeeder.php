@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
         factory(App\User::class, 25)->create();
 
         factory(App\Service::class, 50)->create();
+
+        factory(App\Card::class, 25)->create();
     }
 }
