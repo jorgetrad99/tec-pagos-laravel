@@ -27,8 +27,13 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         //salvar
-        User::create([
+        /* User::create([
             'id' => auth()->user()->id
+        ] + $request->all()); */
+
+        User::create([
+            'email_verified_at' => now(),/* 
+            'remember_token' => Str::random(10), */
         ] + $request->all());
 
         //Retornar

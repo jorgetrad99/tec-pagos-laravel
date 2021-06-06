@@ -6,9 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Usuarios
-                    <a href="{{ route('users.create') }}" class="btn btn-success btn-sm float-right">Crear</a>
-                    {{-- <a class="btn btn-success btn-sm float-right">Crear</a> --}}
+                    Servicios
+                    <a href="{{ route('services.create') }}" class="btn btn-success btn-sm float-right">Crear</a>
                     
                 </div>
 
@@ -23,42 +22,26 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Tipo Usuario</th>
-                                <th>Num. Control</th>
-                                <th>&nbsp;</th>
+                                <th>Número de Control</th>
+                                <th>Saldo Disponible</th>
+                                <th>Fecha de Cración</th>
+                                {{-- <th>&nbsp;</th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
+                            @foreach($cards as $card)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        @switch ($user->user_type)
-                                            @case(0)
-                                                Root
-                                                @break
-                                            @case(1)
-                                                Admin
-                                                @break
-                                            @case(2)
-                                                Alumno
-                                        @endswitch
-                                        
-                                    </td>
-                                    <td>{{ $user->control_number }}</td>
-                                    <td class="column">
+                                    <td>{{ $card->id }}</td>
+                                    <td>{{ $card->control_number }}</td>
+                                    <td>${{ $card->balance }}</td>
+                                    <td>${{ $card->created_at }}</td>
+
+                                    {{-- <td class="column">
                                         <div class="btn-group row justify-content-around">
-                                            <a class="btn btn-sm btn-primary">
+                                            <a href="{{ route('cards.edit', $card) }}" class="btn btn-sm btn-primary">
                                                 Editar
                                             </a>    
-                                            {{-- <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-primary">
-                                                Editar
-                                            </a>    --}} 
-                                            <form action="{{ route('users.destroy', $user) }}" method="POST"> 
+                                            <form action="{{ route('cards.destroy', $card) }}" method="POST"> 
                                                 @csrf
                                                 @method('DELETE')
                                                 <input 
@@ -68,19 +51,12 @@
                                                     onclick="return confirm('¿Desea Eliminar?')"    
                                                 >
                                             </form>
-                                            {{-- <input 
-                                                type="submit" 
-                                                value="Eliminar" 
-                                                class="btn btn-sm btn-danger"
-                                                onclick="return confirm('¿Desea Eliminar?')"    
-                                            > --}}
-
                                         </div>
-                                    </td>
+                                    </td> --}}
                                     
                                 </tr>
                             @endforeach
-                            <style>
+                            {{-- <style>
                                 .card-body{
                                     padding-bottom: 0; 
                                 }
@@ -96,7 +72,7 @@
                                     padding: 5px;
                                     margin: 0;
                                 }
-                            </style>
+                            </style> --}}
                         </tbody>
                         
                     </table>
@@ -104,7 +80,7 @@
                 
             </div>
             <div class="pagination float-right">
-                {{  $users->links() }}
+                {{  $cards->links() }}
             </div>
         </div>
     </div>

@@ -63,26 +63,23 @@
                                     <a href="{{ route('services.index') }}" class="nav-link">
                                         Servicios
                                     </a>
-                                @else  
+                                {{-- @else  
                                     <a href="{{ url('/lista-servicios')}}" class="nav-link">
                                         Servicios
-                                    </a>
+                                    </a> --}}
                                 @endif
                             </li>
                             <li class="nav-item">
                                 @if(Auth::user()->user_type <= 1)
-                                {{-- <a href="{{ route('users.index') }}" class="nav-link">
-                                        Usuarios
-                                    </a> --}}
-
-                                    <a href="{{ url('/users') }}" class="nav-link">
+                                    <a href="{{ route('users.index') }}" class="nav-link">
+                                    {{-- <a href="{{ url('/users') }}" class="nav-link"> --}}
                                         Usuarios
                                     </a>          
                                 @endif
                             </li>
                             <li class="nav-item">
                                 @if(Auth::user()->user_type <= 1)
-                                    <a href="{{ url('/cards') }}" class="nav-link">
+                                    <a href="{{ route('cards.index') }}" class="nav-link">
                                         Tarjetas
                                     </a>          
                                 @endif

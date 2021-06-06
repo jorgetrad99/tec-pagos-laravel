@@ -17,9 +17,15 @@ Route::get('/', 'PageController@services');
 Route::get('/lista-servicios', 'PageController@services');
 Route::get('/services-list/{service}', 'PageController@services')->name('service');
 
-Route::get('/users', 'Backend\UserController@index');
+/* Route::get('/users', 'Backend\UserController@index');
 Route::post('users', 'Backend\UserController@store')->name('users.store');   //Salvar en la base de datos
 Route::delete('users/{user}', 'Backend\UserController@destroy')->name('users.destroy');   //Eliminar de la base de datos
+ */
+Route::resource('users', 'Backend\UserController')
+    ->middleware('auth');
+
+Route::resource('cards', 'Backend\CardController')
+    ->middleware('auth');
 
 Auth::routes();
 
