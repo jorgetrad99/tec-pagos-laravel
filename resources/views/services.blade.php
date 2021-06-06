@@ -8,7 +8,6 @@
                 <div class="card-header">
                     Servicios                    
                 </div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -29,8 +28,9 @@
                                 <tr>
                                     {{-- <td>{{ $service->id }}</td> --}}
                                     <td>{{ $service->name }}</td>
-                                    <td>{{ $service->amount }}</td>
+                                    <td>${{ $service->amount }}</td>
                                     <td class="column">
+                                        
                                         <div class="btn-group justify-content-around">
                                             {{-- {{ dd($service) }} --}}
                                             <a href="{{ route('services.show', $service) }}" class="btn btn-sm btn-success">

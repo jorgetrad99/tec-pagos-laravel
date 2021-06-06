@@ -7,8 +7,8 @@
             <div class="card">
                 <div class="card-header">
                     Usuarios
-                    {{-- <a href="{{ route('users.create') }}" class="btn btn-success btn-sm float-right">Crear</a> --}}
-                    <a class="btn btn-success btn-sm float-right">Crear</a>
+                    <a href="{{ route('users.create') }}" class="btn btn-success btn-sm float-right">Crear</a>
+                    {{-- <a class="btn btn-success btn-sm float-right">Crear</a> --}}
                     
                 </div>
 
@@ -62,7 +62,7 @@
                                             {{-- <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-primary">
                                                 Editar
                                             </a>    --}} 
-                                            {{-- <form action="{{ route('services.destroy', $service) }}" method="POST"> 
+                                            <form action="{{ route('users.destroy', $user) }}" method="POST"> 
                                                 @csrf
                                                 @method('DELETE')
                                                 <input 
@@ -71,13 +71,13 @@
                                                     class="btn btn-sm btn-danger"
                                                     onclick="return confirm('¿Desea Eliminar?')"    
                                                 >
-                                            </form> --}}
-                                            <input 
+                                            </form>
+                                            {{-- <input 
                                                 type="submit" 
                                                 value="Eliminar" 
                                                 class="btn btn-sm btn-danger"
                                                 onclick="return confirm('¿Desea Eliminar?')"    
-                                            >
+                                            > --}}
 
                                         </div>
                                     </td>
@@ -107,9 +107,9 @@
                 </div>
                 
             </div>
-            {{-- <div class="pagination float-right">
+            <div class="pagination float-right">
                 {{  $users->links() }}
-            </div> --}}
+            </div>
         </div>
     </div>
 </div>

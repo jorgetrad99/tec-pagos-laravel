@@ -74,9 +74,17 @@
                                 {{-- <a href="{{ route('users.index') }}" class="nav-link">
                                         Usuarios
                                     </a> --}}
+
                                     <a href="{{ url('/users') }}" class="nav-link">
                                         Usuarios
-                                    </a>
+                                    </a>          
+                                @endif
+                            </li>
+                            <li class="nav-item">
+                                @if(Auth::user()->user_type <= 1)
+                                    <a href="{{ url('/cards') }}" class="nav-link">
+                                        Tarjetas
+                                    </a>          
                                 @endif
                             </li>
                             <li class="nav-item dropdown">

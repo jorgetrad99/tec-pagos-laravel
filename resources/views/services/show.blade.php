@@ -46,11 +46,11 @@
                                     </div>
                                     <div class="col">
                                         <label>Cantidad</label>
-                                        <input id="cantidad" onchange=" calcularTotal();" type="number" name="saldo" value="1" min="1" max="50" step="1" class="form-control" required>
+                                        <input id="cantidad" onchange=" calcularTotal();" type="number" name="saldo" value="1" min="1" max="5" step="1" class="form-control" required>
                                     </div>
                                     <div class="col">
                                         <label>Total</label>
-                                        <input id="total" onload="clacularTotal()" type="text" name="total" value="{{ old('amount', $service->amount) }}" class="form-control" required disabled>
+                                        <input id="total" onload="clacularTotal()" type="text" name="total" value="${{ old('amount', $service->amount) }}" class="form-control" required disabled>
                                     </div>
                                     
                                 </div>
@@ -75,9 +75,12 @@
         var precio_u = document.getElementById("precio-u").value;
         var cantidad = document.getElementById("cantidad").value;
         
+        const options2 = { style: 'currency', currency: 'USD' };
+        const numberFormated = new Intl.NumberFormat('en-US', options2);
+
         var total = precio_u * cantidad;
 
-        document.getElementById("total").value = total;
+        document.getElementById("total").value = numberFormated.format(total);
     }
 </script>
 

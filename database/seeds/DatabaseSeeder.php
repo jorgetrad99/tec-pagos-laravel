@@ -21,9 +21,21 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456')
         ]);
 
+        App\Service::create([
+            'user_id' => 1,
+            'name' => 'Constancia de Estudios',
+            'amount' => 30
+        ]);
+
+        App\Service::create([
+            'user_id' => 1,
+            'name' => 'Kardex de Calificaciones',
+            'amount' => 50
+        ]);
+
         factory(App\User::class, 25)->create();
 
-        factory(App\Service::class, 50)->create();
+        //factory(App\Service::class, 50)->create();
 
         factory(App\Card::class, 25)->create();
     }

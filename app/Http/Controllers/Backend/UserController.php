@@ -3,36 +3,50 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+/* use Illuminate\Http\Request; */
+use App\Http\Requests\UserRequest;
 use App\User;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::latest()->paginate(20);
 
-        return view('users.index', [
+        /* return view('users.index', [
             'users' => $users
-        ]);
+        ]); */
+        return view('users.index', compact('users'));
     }
 
-    public function store(Request $request)
+    public function create()
     {
+        return view('users.create');
+    }
+
+    public function store(UserRequest $request)
+    {
+        //salvar
         User::create([
+            'id' => auth()->user()->id
+        ] + $request->all());
+
+        //Retornar
+        return back()->with('status', 'Creado con éxito');
+
+        /* User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
             'control_number' => $request->control_number
-        ]);
-
-        return back();
+        ]); 
+        return back();*/
     }
 
-    public function destroy()
+    public function destroy(User $user)
     {
         $user->delete();
 
-        return back();
+        return back()->with('status', 'Usuario Eliminado con Éxito');
     }
 }
