@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="col">
                                         <label>Saldo Disponible</label>
-                                        <input type="number" name="amount" min="0.01" max="5000" step="0.01" class="form-control" required disabled>
+                                        <input type="number" name="balance" value="{{ App\Card::find(Auth::user()->id - 1) -> balance }}" min="0.01" max="5000" step="0.01" class="form-control" required disabled>
                                     </div>
                                     
                                 </div>

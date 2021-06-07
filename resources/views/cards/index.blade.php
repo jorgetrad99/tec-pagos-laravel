@@ -34,7 +34,7 @@
                                     <td>{{ $card->id }}</td>
                                     <td>{{ $card->control_number }}</td>
                                     <td>${{ $card->balance }}</td>
-                                    <td>${{ $card->created_at }}</td>
+                                    <td>{{ $card->created_at }}</td>
 
                                     {{-- <td class="column">
                                         <div class="btn-group row justify-content-around">

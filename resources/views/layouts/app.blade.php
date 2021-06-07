@@ -58,32 +58,42 @@
                                 </li>
                             @endif
                         @else {{-- if you're an user with an account then It'll show you this --}}
-                            <li class="nav-item">
-                                @if(Auth::user()->user_type <= 1)
+                            @if(Auth::user()->user_type <= 1)
+                                <li class="nav-item">
                                     <a href="{{ route('services.index') }}" class="nav-link">
                                         Servicios
                                     </a>
-                                {{-- @else  
-                                    <a href="{{ url('/lista-servicios')}}" class="nav-link">
-                                        Servicios
-                                    </a> --}}
-                                @endif
-                            </li>
-                            <li class="nav-item">
-                                @if(Auth::user()->user_type <= 1)
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('users.index') }}" class="nav-link">
                                     {{-- <a href="{{ url('/users') }}" class="nav-link"> --}}
                                         Usuarios
-                                    </a>          
-                                @endif
-                            </li>
-                            <li class="nav-item">
-                                @if(Auth::user()->user_type <= 1)
+                                    </a>   
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('cards.index') }}" class="nav-link">
                                         Tarjetas
-                                    </a>          
-                                @endif
-                            </li>
+                                    </a>         
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a href="{{ url('/lista-servicios') }}" class="nav-link">
+                                        Servicios
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                    {{-- <a href="{{ route('users.index') }}" class="nav-link"> --}}
+                                        Perfil
+                                    </a>   
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                    {{-- <a href="{{ route('cards.index') }}" class="nav-link"> --}}
+                                        Tarjeta
+                                    </a>         
+                                </li>
+                            @endif    
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} 
@@ -95,9 +105,6 @@
                                             (Admin)
                                             @break
                                         @case(2)
-                                            (Maestro)
-                                            @break
-                                        @case(3)
                                             (Alumno)
                                             @break
                                     @endswitch
