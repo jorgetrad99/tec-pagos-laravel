@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Servicios
+                    Tarjetas
                     <a href="{{ route('services.create') }}" class="btn btn-success btn-sm float-right">Crear</a>
                     
                 </div>
@@ -24,7 +24,7 @@
                                 <th>ID</th>
                                 <th>Número de Control</th>
                                 <th>Saldo Disponible</th>
-                                <th>Fecha de Cración</th>
+                                <th>Fecha de Creación</th>
                                 {{-- <th>&nbsp;</th> --}}
                             </tr>
                         </thead>

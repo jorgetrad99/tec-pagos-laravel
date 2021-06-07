@@ -18,7 +18,9 @@ class CreateCardsTable extends Migration
             $table->decimal('balance', 8, 2);
             $table->char('control_number', 8);
             /* $table->dateTimeTz('created_at', 0); */
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+            /* $table->primary('control_number'); */
         });
     }
 
