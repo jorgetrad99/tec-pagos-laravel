@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 /* use Illuminate\Http\Request; */
 use App\Http\Requests\UserRequest;
 use App\User;
+use App\Card;
 
 class UserController extends Controller
 {
@@ -31,10 +32,19 @@ class UserController extends Controller
             'id' => auth()->user()->id
         ] + $request->all()); */
 
-        User::create([
-            'email_verified_at' => now(),/* 
-            'remember_token' => Str::random(10), */
-        ] + $request->all());
+
+        if ($request->user_type == 2) {
+
+            factory(Card::class)->create([
+                'balance' => 500.00,
+                'user_id' => User::create([
+                    'id' => auth()->user()->id
+                ] + $request->all())
+            ]);
+        } else {
+            User::create([] + $request->all());
+        }
+
 
         //Retornar
         return back()->with('status', 'Creado con éxito');
@@ -50,6 +60,12 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+
+        //dd($user);
+
+        if ($user->user_type <= 2 && $user->control_number != null) {
+            Card::where('control_number', $user->control_number)->delete();
+        }
         $user->delete();
 
         return back()->with('status', 'Usuario Eliminado con Éxito');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 /* use Illuminate\Http\Request; */
 use App\Http\Requests\CardRequest;
 use App\Card;
+use App\Service;
 
 class CardController extends Controller
 {
@@ -51,36 +52,36 @@ class CardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\card  $card
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(Card $card)
     {
-        return view('services.show', compact('service'));
+        return view('cards.show', compact('card'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\card  $card
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Card $card)
     {
 
-        return view('services.edit', compact('service'));
+        return view('cards.edit', compact('card'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
+     * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, Service $service)
+    public function update(ServiceRequest $request, Card $card)
     {
-        $service->update($request->all());
+        $card->update($request->all());
 
         return back()->with('status', 'Servicio Actualizado con Éxito');
     }
@@ -88,12 +89,12 @@ class CardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Service  $service
+     * @param  \App\card  $card
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Card $card)
     {
-        $service->delete();
+        $card->delete();
 
         return back()->with('status', 'Servicio Eliminado con Éxito');
     }

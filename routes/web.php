@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'PageController@services');
+/* Route::get('/', 'PageController@services'); */
 
 Route::get('/lista-servicios', 'PageController@services');
 Route::get('/services-list/{service}', 'PageController@services')->name('service');

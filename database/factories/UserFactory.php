@@ -4,6 +4,7 @@
 
 use App\User;
 use Faker\Generator as Faker;
+use Illuminate\Validation\Rule;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'control_number' => "18800{$faker->unique()->randomNumber(3, false)}",
+        'control_number' => "{$faker->numberBetween(16, 21)}800{$faker->randomNumber(3)}",
         'email_verified_at' => now(),
         'user_type' => $faker->numberBetween(0, 2),
         'password' => bcrypt('123456'), // password

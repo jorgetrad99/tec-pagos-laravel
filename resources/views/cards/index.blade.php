@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     Tarjetas
-                    <a href="{{ route('services.create') }}" class="btn btn-success btn-sm float-right">Crear</a>
+                    {{-- <a href="{{ route('services.create') }}" class="btn btn-success btn-sm float-right">Crear</a> --}}
                     
                 </div>
 
