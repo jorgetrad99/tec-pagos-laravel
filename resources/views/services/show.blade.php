@@ -13,11 +13,11 @@
                         </div>
                     @endif
                     
-                    <form action="{{ route('services.update', $service) }}" method="POST">
+                    <form action="{{ route('services.update', $service) }}" onsubmit="return confirmarPago()" name="formulario" method="POST">
                     {{-- <form method="POST"> --}}
                         <div class="form-group">
                             <label>Concepto</label>
-                            <input type="text" name="name" col="2" class="form-control" value="{{ old('name', $service->name) }}" readonly>
+                            <input type="text" name="name" id="name" col="2" class="form-control" value="{{ old('name', $service->name) }}" readonly>
                         </div>
                         <div class="form-group">
                             <div class="container">
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col">
                                         <label>Cantidad</label>
-                                        <input id="cantidad" onchange="changeValues()" type="number" name="saldo" value="0" min="0" max="5" step="1" class="form-control" required>
+                                        <input id="cantidad" onchange="changeValues()" type="number" name="saldo" value="0" min="1" max="5" step="1" class="form-control" pattern="[0-5]" required>
                                     </div>
                                     <div class="col">
                                         <label>Total</label>
@@ -112,38 +112,44 @@
         
         var total = precio_u * cantidad;
 
-        balance = balance.slice(1);
+        balance = balance.slice(1);     //eliminamos el signo de pesos ($) para poder hacer operaciones
 
-        balance = parseFloat(balance);
+        balance = parseFloat(balance);      //De String a Float  
         
-        if(cantidad <= 5){
+        if(cantidad <= 5 && cantidad >= 0){
             if(balance > calcularTotal()){
-                console.log("-");
-                console.log(precio_u);
                 sald_pos = balance - calcularTotal();
-                console.log(sald_pos);
-                
-            } /* else {
-                console.log("+");
-                console.log(precio_u);
-                sald_pos = sald_pos + precio_u;
-                console.log(sald_pos);
-            }     */        
+
+                sald_pos = numberFormated.format(sald_pos); //le damos formato monetario
+                document.getElementById("balance_pos").value = sald_pos;
+            }else{
+                alert("El Saldo Disponible no es suficiente")
+                document.getElementById("cantidad").value = 1;
+                changeValues();
+            }       
+        } else {
+            alert("El campo cantidad debe estar entre 1 y 5.\nEstableciendo 1 como valor predeterminado en la cantidad de los productos")
+            document.getElementById("cantidad").value = 1;
+            changeValues();
         } 
-        sald_pos = numberFormated.format(sald_pos);
-
-        document.getElementById("balance_pos").value = sald_pos;
-
-        console.log(sald_pos);
-
-        
     }
 
     function changeValues(){
         //if(document.getElementById("balance_pos").value.slice(1) > document.getElementById("total").value) {
-            imprimirTotal();
+            
             calcularSaldoPosterior();
-        
+            imprimirTotal();
+    }
+
+    function confirmarPago(){
+        changeValues();
+        if(document.getElementById("cantidad").value > 0 && document.getElementById("cantidad").value <= 5 ){
+            if(!confirm(`¿Desea pagar ${document.getElementById("cantidad").value} servicio(s) de concepto "${document.getElementById("name").value}"?`)){
+                return false;
+            } else{
+                document.formulario.submit(); 
+            }
+        } 
     }
 
 </script>
