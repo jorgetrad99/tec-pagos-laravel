@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Service;
+use App\Card;
 use App\Http\Requests\ServiceRequest;
+use App\Http\Requests\CardRequest;
 
 
 class ServiceController extends Controller
@@ -54,9 +56,11 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(Service $service, Card $card)  //Confirm Payment
     {
-        return view('services.show', compact('service'));
+        $card = Card::where('user_id', auth()->user()->id)->first();
+
+        return view('services.show', compact('service', 'card'));
     }
 
     /**
@@ -77,8 +81,9 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, Service $service)
+    public function update(CardRequest $request, Service $service)
     {
+        dd($request->total);
         $service->update($request->all());
 
         return back()->with('status', 'Servicio Actualizado con Éxito');

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-/* use Illuminate\Http\Request; */
+use Illuminate\Http\Request;
 use App\Http\Requests\CardRequest;
 use App\Card;
 use App\Service;
@@ -79,11 +79,28 @@ class CardController extends Controller
      * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, Card $card)
+    public function update(Request $request, Card $card)
     {
-        $card->update($request->all());
+        /* dd($request->all()); */
+        /* dd((float) (number_format((substr($request->balance, 1) - substr($request->total, 1)), 2))); */
+        /* dd((float) (substr($request->balance, 1) - substr($request->total, 1))); */
+        /* $discount = (float) (substr($request->balance, 1) - substr($request->total, 1)); */
+        /* dd($discount); */
 
-        return back()->with('status', 'Servicio Actualizado con Éxito');
+        $balance_pos = (float) (substr($request->balance_pos, 1));
+        /* dd($balance_pos); */
+
+        /* $balance_pos = floatval(substr($request->balance_pos, 1)); */
+        /* dd($balance_pos); */
+        /* $card->update([
+            'balance' => $balance_pos
+        ] /* + $request->all() ); */
+
+        Card::where('control_number', $request->control_number)
+            ->update(['balance' => $balance_pos]);
+
+        /* return back()->with('status', 'El pago se ha efectuado con Éxito'); */
+        return redirect('/lista-servicios')->with('status', 'El pago se ha efectuado con Éxito');
     }
 
     /**

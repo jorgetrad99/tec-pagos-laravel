@@ -12,10 +12,10 @@
 */
 
 
-Route::get('/', 'PageController@services');
+/* Route::get('/', 'PageController@services'); */
 
 Route::get('/lista-servicios', 'PageController@services');
-Route::get('/services-list/{service}', 'PageController@services')->name('service');
+/* Route::get('/services-list/{service}', 'PageController@services')->name('service'); */
 
 /* Route::get('/users', 'Backend\UserController@index');
 Route::post('users', 'Backend\UserController@store')->name('users.store');   //Salvar en la base de datos
@@ -24,12 +24,12 @@ Route::delete('users/{user}', 'Backend\UserController@destroy')->name('users.des
 Route::resource('users', 'Backend\UserController')
     ->middleware('auth');
 
-Route::resource('cards', 'Backend\CardController')
-    ->middleware('auth');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('services', 'Backend\ServiceController')
+    ->middleware('auth');
+
+Route::resource('cards', 'Backend\CardController')
     ->middleware('auth');

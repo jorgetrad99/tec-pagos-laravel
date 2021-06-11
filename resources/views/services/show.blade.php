@@ -13,22 +13,23 @@
                         </div>
                     @endif
                     
-                    <form action="{{ route('services.update', $service) }}" onsubmit="return confirmarPago()" name="formulario" method="POST">
+                    <form action="{{ route('cards.update', $service, $card) }}" onsubmit="return confirmarPago()" name="formulario" method="POST">
                     {{-- <form method="POST"> --}}
+                       {{-- @dd($card); --}}
                         <div class="form-group">
                             <label>Concepto</label>
-                            <input type="text" name="name" id="name" col="2" class="form-control" value="{{ old('name', $service->name) }}" readonly>
+                            <input type="text" name="name" id="name" col="2" class="form-control" value="{{ $service->name }}" readonly>
                         </div>
                         <div class="form-group">
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <div class="col">
                                         <label>Número de Control</label>
-                                        <input type="text" name="control_number" value="{{ Auth::user()->control_number }}" class="form-control" readonly>
+                                        <input type="text" name="control_number" value="{{ $card->control_number }}" class="form-control" readonly>
                                     </div>
                                     <div class="col">
                                         <label>Saldo Disponible</label>
-                                        <input type="text" name="balance" id="balance" value="${{ App\Card::find(Auth::user()->id - 1) -> balance }}" class="form-control" readonly>
+                                        <input type="text" name="balance" id="balance" value="${{ $card -> balance }}" class="form-control" readonly>
                                     </div>
                                     
                                 </div>
@@ -43,7 +44,7 @@
                                     </div>
                                     <div class="col">
                                         <label>Saldo Posterior</label>
-                                        <input type="text" onload="calcularSaldoPosterior();" name="balance_pos" id="balance_pos" value="${{ App\Card::find(Auth::user()->id - 1) -> balance }}" class="form-control" readonly>
+                                        <input type="text" onload="calcularSaldoPosterior();" name="balance_pos" id="balance_pos" value="${{ $card -> balance }}" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +55,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col">
                                         <label>P. Unitario</label>
-                                        <input id="precio-u" type="number" name="amount" value="{{ old('amount', $service->amount) }}" min="0.01" max="5000" step="0.01" class="form-control" required readonly>
+                                        <input id="precio-u" type="number" name="amount" value="{{ $service->amount }}" min="0.01" max="5000" step="0.01" class="form-control" required readonly>
                                     </div>
                                     <div class="col">
                                         <label>Cantidad</label>
@@ -96,6 +97,7 @@
         const options2 = { style: 'currency', currency: 'USD' };
         const numberFormated = new Intl.NumberFormat('en-US', options2);
 
+        /* document.getElementById("total").value = calcularTotal(); */
         document.getElementById("total").value = numberFormated.format(calcularTotal());
         
     }
@@ -117,20 +119,21 @@
         balance = parseFloat(balance);      //De String a Float  
         
         if(cantidad <= 5 && cantidad >= 0){
-            if(balance > calcularTotal()){
+            if(balance >= calcularTotal()){
                 sald_pos = balance - calcularTotal();
 
                 sald_pos = numberFormated.format(sald_pos); //le damos formato monetario
                 document.getElementById("balance_pos").value = sald_pos;
             }else{
                 alert("El Saldo Disponible no es suficiente")
-                document.getElementById("cantidad").value = 1;
+                document.getElementById("cantidad").value = document.getElementById("cantidad").value - 1;
                 changeValues();
             }       
         } else {
-            alert("El campo cantidad debe estar entre 1 y 5.\nEstableciendo 1 como valor predeterminado en la cantidad de los productos")
-            document.getElementById("cantidad").value = 1;
+            document.getElementById("cantidad").value = 0;
             changeValues();
+            alert("El campo cantidad debe estar entre 1 y 5.\nEstableciendo 1 como valor predeterminado en la cantidad de los productos")
+            
         } 
     }
 
