@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CardRequest;
 use App\Card;
-use App\Service;
+use App\History;
+use Illuminate\Support\Facades\App;
 
 class CardController extends Controller
 {
@@ -98,6 +99,14 @@ class CardController extends Controller
 
         Card::where('control_number', $request->control_number)
             ->update(['balance' => $balance_pos]);
+
+        History::create([
+            'control_number' => $request->control_number,
+            'name' => $request->name,
+            'amount' => $request->saldo,
+            'cost' => $request->amount,
+            'total' => (float) (substr($request->total, 1))
+        ]);
 
         /* return back()->with('status', 'El pago se ha efectuado con Éxito'); */
         return redirect('/lista-servicios')->with('status', 'El pago se ha efectuado con Éxito');

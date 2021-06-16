@@ -75,6 +75,11 @@
                                         Tarjetas
                                     </a>         
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('histories.index') }}" class="nav-link">
+                                        Historial
+                                    </a>         
+                                </li>
                             @else
                                 <li class="nav-item">
                                     <a href="{{ url('/lista-servicios') }}" class="nav-link">
@@ -91,6 +96,11 @@
                                     <a href="#" class="nav-link">
                                     {{-- <a href="{{ route('cards.index') }}" class="nav-link"> --}}
                                         Tarjeta
+                                    </a>         
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('histories.index_alumno') }}" class="nav-link">
+                                        Historial
                                     </a>         
                                 </li>
                             @endif    

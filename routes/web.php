@@ -12,7 +12,7 @@
 */
 
 
-/* Route::get('/', 'PageController@services'); */
+Route::get('/', 'PageController@services');
 
 Route::get('/lista-servicios', 'PageController@services');
 /* Route::get('/services-list/{service}', 'PageController@services')->name('service'); */
@@ -31,5 +31,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('services', 'Backend\ServiceController')
     ->middleware('auth');
 
+Route::resource('histories', 'Backend\HistoryController')
+    ->middleware('auth');
+
 Route::resource('cards', 'Backend\CardController')
     ->middleware('auth');
+
+
+Route::get('history', 'Backend\HistoryController@index_alumno')->name('histories.index_alumno');
