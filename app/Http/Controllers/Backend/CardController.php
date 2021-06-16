@@ -112,6 +112,13 @@ class CardController extends Controller
         return redirect('/lista-servicios')->with('status', 'El pago se ha efectuado con Éxito');
     }
 
+    public function card_data()
+    {
+        $card = Card::where('control_number', auth()->user()->control_number)->first();
+
+        return view('cards.card_data', compact('card'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -39,3 +39,4 @@ Route::resource('cards', 'Backend\CardController')
 
 
 Route::get('history', 'Backend\HistoryController@index_alumno')->name('histories.index_alumno');
+Route::get('card-data', 'Backend\CardController@card_data')->name('cards.card_data');

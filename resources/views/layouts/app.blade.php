@@ -87,13 +87,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                    {{-- <a href="{{ route('users.index') }}" class="nav-link"> --}}
-                                        Perfil
-                                    </a>   
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('cards.card_data') }}" class="nav-link">
                                     {{-- <a href="{{ route('cards.index') }}" class="nav-link"> --}}
                                         Tarjeta
                                     </a>         
